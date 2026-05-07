@@ -1,320 +1,213 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QuickCash Loan - Fast Loans in Nigeria</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            min-height: 100vh;
-        }
-        
-        header {
-            background: #1e3a8a;
-            color: white;
-            padding: 1rem 0;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-        
-        nav {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 2rem;
-        }
-        
-        .logo {
-            font-size: 1.8rem;
-            font-weight: bold;
-        }
-        
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            margin-left: 2rem;
-            font-weight: 500;
-        }
-        
-        .hero {
-            background: linear-gradient(rgba(30, 58, 138, 0.9), rgba(30, 58, 138, 0.9)), url('https://picsum.photos/id/1015/2000/800') center/cover;
-            color: white;
-            text-align: center;
-            padding: 120px 20px;
-        }
-        
-        .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-        
-        .hero p {
-            font-size: 1.3rem;
-            max-width: 700px;
-            margin: 0 auto 2rem;
-        }
-        
-        .btn {
-            display: inline-block;
-            background: #22c55e;
-            color: white;
-            padding: 14px 32px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 1.1rem;
-            transition: all 0.3s;
-        }
-        
-        .btn:hover {
-            background: #16a34a;
-            transform: translateY(-3px);
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem;
-        }
-        
-        .form-section {
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            padding: 40px;
-            margin: 40px auto;
-            max-width: 700px;
-        }
-        
-        h2 {
-            text-align: center;
-            margin-bottom: 30px;
-            color: #1e3a8a;
-        }
-        
-        form {
-            display: grid;
-            gap: 20px;
-        }
-        
-        label {
-            display: block;
-            margin-bottom: 6px;
-            font-weight: 600;
-        }
-        
-        input, select, textarea {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            font-size: 1rem;
-        }
-        
-        .submit-btn {
-            background: #1e3a8a;
-            color: white;
-            border: none;
-            padding: 16px;
-            font-size: 1.2rem;
-            border-radius: 8px;
-            cursor: pointer;
-            margin-top: 10px;
-        }
-        
-        .telegram-info {
-            background: #229ED9;
-            color: white;
-            padding: 25px;
-            border-radius: 12px;
-            text-align: center;
-            margin: 40px 0;
-        }
-        
-        .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin: 60px 0;
-        }
-        
-        .feature-card {
-            background: white;
-            padding: 30px;
-            border-radius: 12px;
-            text-align: center;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-        }
-        
-        footer {
-            background: #1e3a8a;
-            color: white;
-            text-align: center;
-            padding: 40px 20px;
-            margin-top: 60px;
-        }
-        
-        .success-message {
-            display: none;
-            background: #22c55e;
-            color: white;
-            padding: 20px;
-            border-radius: 8px;
-            text-align: center;
-            margin-top: 20px;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QuickFund - Personal & Business Loans</title>
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+  <!-- AOS Animations -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+  <style>
+    body { font-family: 'Inter', system-ui, sans-serif; }
+
+    /* Hero background fade-in */
+    .hero-bg {
+      background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
+                  url('https://source.unsplash.com/random/1600x900/?finance') center/cover;
+      opacity: 0;
+      animation: fadeInHero 1.5s ease-out forwards;
+    }
+    @keyframes fadeInHero {
+      to { opacity: 1; }
+    }
+
+    /* Floating icons */
+    @keyframes float {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0); }
+    }
+    .float {
+      animation: float 3s ease-in-out infinite;
+    }
+  </style>
 </head>
-<body>
-    <header>
-        <nav>
-            <div class="logo">QuickCash</div>
-            <div class="nav-links">
-                <a href="#">Home</a>
-                <a href="#">Loans</a>
-                <a href="#">How it Works</a>
-                <a href="#">Contact</a>
-            </div>
-        </nav>
-    </header>
 
-    <section class="hero">
-        <h1>Get Instant Loans in Minutes</h1>
-        <p>Up to ₦5,000,000 with minimal documentation. Fast approval and disbursement to your bank account.</p>
-        <a href="#apply" class="btn">Apply Now</a>
-    </section>
+<body class="bg-gray-50">
 
-    <div class="container">
-        <section id="apply" class="form-section">
-            <h2>Loan Application Form</h2>
-            
-            <form id="loanForm">
-                <div>
-                    <label>Full Name</label>
-                    <input type="text" id="fullName" required placeholder="John Doe">
-                </div>
-                
-                <div>
-                    <label>Phone Number</label>
-                    <input type="tel" id="phone" required placeholder="+234 801 234 5678">
-                </div>
-                
-                <div>
-                    <label>Email Address</label>
-                    <input type="email" id="email" required placeholder="you@example.com">
-                </div>
-                
-                <div>
-                    <label>National ID / BVN</label>
-                    <input type="text" id="idNumber" required placeholder="Enter your NIN or BVN">
-                </div>
-                
-                <div>
-                    <label>Loan Amount (₦)</label>
-                    <input type="number" id="amount" required min="10000" max="5000000" placeholder="500000">
-                </div>
-                
-                <div>
-                    <label>Loan Duration</label>
-                    <select id="duration" required>
-                        <option value="">Select duration</option>
-                        <option value="1">1 Month</option>
-                        <option value="3">3 Months</option>
-                        <option value="6" selected>6 Months</option>
-                        <option value="12">12 Months</option>
-                    </select>
-                </div>
-                
-                <div>
-                    <label>Purpose of Loan</label>
-                    <textarea id="purpose" rows="3" placeholder="Business expansion, personal use, etc."></textarea>
-                </div>
-                
-                <button type="submit" class="submit-btn">Submit Application</button>
-            </form>
-            
-            <div id="successMessage" class="success-message">
-                ✅ Application Submitted Successfully!<br>
-                Your Application ID: <strong>QC-2026-</strong><span id="appId"></span><br><br>
-                <strong>Track your result via Telegram</strong>
-            </div>
-        </section>
-
-        <div class="telegram-info">
-            <h3>📱 Check Your Loan Status on Telegram</h3>
-            <p style="font-size: 1.3rem; margin: 15px 0;">
-                <strong>@QuickCashLoanBot</strong>
-            </p>
-            <p>Send your Application ID to the bot above to get instant updates on approval status and disbursement.</p>
-            <a href="https://t.me/QuickCashLoanBot" target="_blank" style="color: white; text-decoration: underline; font-size: 1.1rem;">
-                Open Telegram Bot →
-            </a>
-        </div>
-
-        <div class="features">
-            <div class="feature-card">
-                <h3>⚡ Instant Approval</h3>
-                <p>Get approved in under 15 minutes with just your BVN/NIN and basic details.</p>
-            </div>
-            <div class="feature-card">
-                <h3>💰 Flexible Repayment</h3>
-                <p>Choose from 1 to 12 months repayment plans with competitive interest rates.</p>
-            </div>
-            <div class="feature-card">
-                <h3>🔒 Secure &amp; Trusted</h3>
-                <p>Bank-level security. Licensed by the Central Bank of Nigeria.</p>
-            </div>
-        </div>
+  <!-- Navbar -->
+  <nav class="bg-white shadow-md sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+      <h1 class="text-3xl font-bold text-blue-600">QuickFund</h1>
+      <div class="space-x-8 text-gray-700 font-medium">
+        <a href="#home" class="hover:text-blue-600">Home</a>
+        <a href="#loans" class="hover:text-blue-600">Loans</a>
+        <a href="#apply" class="hover:text-blue-600">Apply Now</a>
+        <a href="#faq" class="hover:text-blue-600">FAQ</a>
+      </div>
+      <button onclick="document.getElementById('apply-section').scrollIntoView({ behavior: 'smooth' })"
+              class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-xl font-semibold">
+        Apply Now
+      </button>
     </div>
+  </nav>
 
-    <footer>
-        <p>&copy; 2026 QuickCash Loans Nigeria. All Rights Reserved.</p>
-        <p>Telegram Support: <strong>@QuickCashLoanBot</strong> | Customer Care: 0800-QUICKCASH</p>
-        <p style="margin-top: 10px; font-size: 0.9rem;">
-            This is a demo website for illustration purposes only.
-        </p>
-    </footer>
+  <!-- Hero -->
+  <section id="home" class="hero-bg text-white py-32" data-aos="fade-up">
+    <div class="max-w-7xl mx-auto px-6 text-center">
+      <h2 class="text-5xl md:text-6xl font-bold mb-6">Get the money you need,<br>when you need it.</h2>
+      <p class="text-xl mb-10 max-w-2xl mx-auto">Fast, secure, and transparent personal & business loans up to $100,000. Approval in minutes.</p>
+      <button onclick="document.getElementById('apply-section').scrollIntoView({ behavior: 'smooth' })"
+              class="bg-blue-600 hover:bg-blue-700 text-white text-xl px-10 py-5 rounded-2xl font-semibold transition">
+        Start Your Application →
+      </button>
+      <p class="mt-8 text-sm">No hidden fees • No impact on credit score for pre-qualification</p>
+    </div>
+  </section>
 
-    <script>
-        document.getElementById('loanForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Generate random application ID
-            const randomId = Math.floor(10000 + Math.random() * 90000);
-            document.getElementById('appId').textContent = randomId;
-            
-            // Show success message
-            document.getElementById('successMessage').style.display = 'block';
-            
-            // Scroll to success message
-            document.getElementById('successMessage').scrollIntoView({ behavior: 'smooth' });
-            
-            // Reset form after 5 seconds (optional)
-            setTimeout(() => {
-                this.reset();
-                document.getElementById('successMessage').style.display = 'none';
-            }, 8000);
-        });
-        
-        // Make phone number nicer on mobile
-        document.getElementById('phone').addEventListener('input', function(e) {
-            let val = e.target.value.replace(/\D/g, '');
-            if (val.length > 11) val = val.substring(0, 11);
-            e.target.value = val;
-        });
-    </script>
+  <!-- Loan Types -->
+  <section id="loans" class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-6">
+      <h3 class="text-4xl font-bold text-center mb-12">Choose Your Loan Type</h3>
+      <div class="grid md:grid-cols-3 gap-8">
+
+        <div class="border border-gray-200 rounded-3xl p-8 hover:shadow-xl transition" data-aos="zoom-in" data-aos-delay="100">
+          <i class="fa-solid fa-user text-4xl text-blue-600 mb-6 float"></i>
+          <h4 class="text-2xl font-semibold mb-3">Personal Loan</h4>
+          <p class="text-4xl font-bold mb-2">$500 - $50,000</p>
+          <p class="text-gray-600 mb-6">Flexible repayment terms from 6 to 72 months</p>
+          <button class="w-full bg-blue-600 text-white py-4 rounded-2xl font-semibold">Apply Now</button>
+        </div>
+
+        <div class="border border-gray-200 rounded-3xl p-8 hover:shadow-xl transition" data-aos="zoom-in" data-aos-delay="200">
+          <i class="fa-solid fa-briefcase text-4xl text-emerald-600 mb-6 float"></i>
+          <h4 class="text-2xl font-semibold mb-3">Business Loan</h4>
+          <p class="text-4xl font-bold mb-2">$10,000 - $100,000</p>
+          <p class="text-gray-600 mb-6">For startups and growing businesses</p>
+          <button class="w-full bg-emerald-600 text-white py-4 rounded-2xl font-semibold">Apply Now</button>
+        </div>
+
+        <div class="border border-gray-200 rounded-3xl p-8 hover:shadow-xl transition" data-aos="zoom-in" data-aos-delay="300">
+          <i class="fa-solid fa-car text-4xl text-purple-600 mb-6 float"></i>
+          <h4 class="text-2xl font-semibold mb-3">Auto Loan</h4>
+          <p class="text-4xl font-bold mb-2">Competitive Rates</p>
+          <p class="text-gray-600 mb-6">Finance your new or used vehicle</p>
+          <button class="w-full bg-purple-600 text-white py-4 rounded-2xl font-semibold">Apply Now</button>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Application Form -->
+  <section id="apply-section" class="py-20 bg-gray-100">
+    <div class="max-w-4xl mx-auto px-6">
+      <h3 class="text-4xl font-bold text-center mb-4">Loan Application</h3>
+      <p class="text-center text-gray-600 mb-10">Takes less than 5 minutes • Secure & encrypted</p>
+
+      <form id="loanForm" class="bg-white rounded-3xl shadow-xl p-10 space-y-8" data-aos="fade-up">
+
+        <div class="grid md:grid-cols-2 gap-6">
+          <div>
+            <label for="firstName" class="block text-sm font-medium mb-2">First Name</label>
+            <input id="firstName" type="text" class="w-full border border-gray-300 rounded-2xl px-5 py-4 focus:outline-none focus:border-blue-500" required>
+          </div>
+
+          <div>
+            <label for="lastName" class="block text-sm font-medium mb-2">Last Name</label>
+            <input id="lastName" type="text" class="w-full border border-gray-300 rounded-2xl px-5 py-4 focus:outline-none focus:border-blue-500" required>
+          </div>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-6">
+          <div>
+            <label for="email" class="block text-sm font-medium mb-2">Email Address</label>
+            <input id="email" type="email" class="w-full border border-gray-300 rounded-2xl px-5 py-4 focus:outline-none focus:border-blue-500" required>
+          </div>
+
+          <div>
+            <label for="phone" class="block text-sm font-medium mb-2">Phone Number</label>
+            <input id="phone" type="tel" class="w-full border border-gray-300 rounded-2xl px-5 py-4 focus:outline-none focus:border-blue-500" required>
+          </div>
+        </div>
+
+        <div>
+          <label for="amount" class="block text-sm font-medium mb-2">Loan Amount Requested</label>
+          <div class="flex items-center gap-3">
+            <span class="text-3xl font-bold text-gray-400">$</span>
+            <input type="number" id="amount" class="w-full border border-gray-300 rounded-2xl px-5 py-4 focus:outline-none focus:border-blue-500 text-2xl" placeholder="5000" required>
+          </div>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-6">
+          <div>
+            <label class="block text-sm font-medium mb-2">Loan Purpose</label>
+            <select class="w-full border border-gray-300 rounded-2xl px-5 py-4 focus:outline-none focus:border-blue-500">
+              <option>Debt Consolidation</option>
+              <option>Home Improvement</option>
+              <option>Business Expansion</option>
+              <option>Vehicle Purchase</option>
+              <option>Medical Expenses</option>
+              <option>Other</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="income" class="block text-sm font-medium mb-2">Annual Income ($)</label>
+            <input id="income" type="number" class="w-full border border-gray-300 rounded-2xl px-5 py-4 focus:outline-none focus:border-blue-500" required>
+          </div>
+        </div>
+
+        <div class="pt-6">
+          <button type="submit"
+                  class="w-full bg-gradient-to-r from-blue-600 to-blue-700 text-white py-6 text-xl font-semibold rounded-3xl hover:from-blue-700 hover:to-blue-800 transition">
+            Submit Application
+          </button>
+        </div>
+
+      </form>
+
+      <p class="text-center text-sm text-gray-500 mt-8">
+        Your information is protected with bank-level encryption.<br>
+        This is a demo website for educational and portfolio purposes only.
+      </p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-white py-16">
+    <div class="max-w-7xl mx-auto px-6 text-center">
+      <h2 class="text-3xl font-bold mb-4">QuickFund</h2>
+      <p class="text-gray-400">Fast. Transparent. Reliable.</p>
+      <p class="text-sm text-gray-500 mt-8">© 2026 QuickFund Demo. This is a fictional website for educational and portfolio purposes.</p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({ duration: 1000, once: true });
+
+    document.getElementById('loanForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const amount = document.getElementById('amount').value;
+      if (amount < 500 || amount > 100000) {
+        alert("Loan amount must be between $500 and $100,000.");
+        return;
+      }
+
+      alert("✅ Application submitted successfully!\n\n(This is a demo. In a real app, data would be securely processed.)");
+      this.reset();
+    });
+  </script>
+
 </body>
 </html>
