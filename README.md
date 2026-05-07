@@ -11,13 +11,24 @@
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
+  <!-- Confetti -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
   <style>
     body { font-family: 'Inter', system-ui, sans-serif; }
 
-    /* Hero background */
     .hero-bg {
       background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
                   url('https://source.unsplash.com/random/1600x900/?finance') center/cover;
+    }
+
+    /* 3D card */
+    .card-3d {
+      transform-style: preserve-3d;
+      transition: transform 0.2s ease-out;
     }
   </style>
 </head>
@@ -91,10 +102,11 @@
   <!-- Application Form -->
   <section id="apply-section" class="py-20 bg-gray-100">
     <div class="max-w-4xl mx-auto px-6">
-      <h3 class="text-4xl font-bold text-center mb-4">Loan Application</h3>
-      <p class="text-center text-gray-600 mb-10">Takes less than 5 minutes • Secure & encrypted</p>
 
+      <!-- FORM -->
       <form id="loanForm" class="bg-white rounded-3xl shadow-xl p-10 space-y-8">
+
+        <h3 class="text-4xl font-bold text-center mb-4">Loan Application</h3>
 
         <div class="grid md:grid-cols-2 gap-6">
           <div>
@@ -144,66 +156,26 @@
           </div>
         </div>
 
-        <div class="pt-6">
-          <button type="submit"
-                  class="w-full bg-gradient-to-r from-blue-600 to-blue-700 text-white py-6 text-xl font-semibold rounded-3xl hover:from-blue-700 hover:to-blue-800 transition">
-            Submit Application
-          </button>
-        </div>
+        <button type="submit"
+                class="w-full bg-gradient-to-r from-blue-600 to-blue-700 text-white py-6 text-xl font-semibold rounded-3xl hover:from-blue-700 hover:to-blue-800 transition">
+          Submit Application
+        </button>
 
       </form>
+
+      <!-- SUCCESS CARD (HIDDEN INITIALLY) -->
+      <div id="successCard" class="hidden card-3d bg-white shadow-2xl rounded-3xl p-10 text-center max-w-lg mx-auto mt-10">
+        <h1 class="text-4xl font-bold text-blue-600 mb-4">Application Submitted</h1>
+        <p class="text-gray-700 text-lg mb-6">Your application number is:</p>
+        <p id="appNumber" class="text-3xl font-bold text-green-600 mb-8"></p>
+      </div>
+
     </div>
   </section>
 
-  <!-- Footer -->
-  <footer class="bg-gray-900 text-white py-16">
-    <div class="max-w-7xl mx-auto px-6 text-center">
-      <h2 class="text-3xl font-bold mb-4">QuickFund</h2>
-      <p class="text-gray-400">Fast. Transparent. Reliable.</p>
-      <p class="text-sm text-gray-500 mt-8">© 2026 QuickFund Demo. This is a fictional website for educational and portfolio purposes.</p>
-    </div>
-  </footer>
-
-  <!-- GSAP -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-
+  <!-- GSAP + LOGIC -->
   <script>
-    gsap.registerPlugin(ScrollTrigger);
-
-    // HERO ANIMATION
-    gsap.from("#home h2", { opacity: 0, y: 50, duration: 1.2, ease: "power3.out" });
-    gsap.from("#home p", { opacity: 0, y: 30, duration: 1, delay: 0.4, ease: "power3.out" });
-    gsap.from("#home button", { opacity: 0, scale: 0.8, duration: 0.8, delay: 0.7, ease: "back.out(1.7)" });
-
-    // LOAN CARDS
-    gsap.utils.toArray("#loans .border").forEach((card, i) => {
-      gsap.from(card, {
-        scrollTrigger: { trigger: card, start: "top 85%" },
-        opacity: 0,
-        y: 40,
-        duration: 0.8,
-        delay: i * 0.15,
-        ease: "power2.out"
-      });
-    });
-
-    // FORM SECTION
-    gsap.from("#apply-section form", {
-      scrollTrigger: { trigger: "#apply-section", start: "top 80%" },
-      opacity: 0,
-      y: 60,
-      duration: 1,
-      ease: "power3.out"
-    });
-
-    // BUTTON MICRO-ANIMATION
-    document.querySelectorAll("button").forEach(btn => {
-      btn.addEventListener("mouseenter", () => gsap.to(btn, { scale: 1.05, duration: 0.2 }));
-      btn.addEventListener("mouseleave", () => gsap.to(btn, { scale: 1, duration: 0.2 }));
-    });
-
-    // FORM SUBMISSION (NO ALERT)
+    // FORM SUBMISSION
     document.getElementById('loanForm').addEventListener('submit', function(e) {
       e.preventDefault();
 
@@ -213,8 +185,65 @@
         return;
       }
 
-      // Silent submit (demo)
-      this.reset();
+      // Generate application number
+      const appNumber = "QF-" + Math.floor(100000 + Math.random() * 900000);
+      document.getElementById("appNumber").textContent = appNumber;
+
+      // Hide form
+      gsap.to("#loanForm", {
+        opacity: 0,
+        scale: 0.8,
+        duration: 0.5,
+        onComplete: () => {
+          document.getElementById("loanForm").classList.add("hidden");
+
+          // Show success card
+          const card = document.getElementById("successCard");
+          card.classList.remove("hidden");
+
+          // POP-IN animation
+          gsap.from(card, {
+            opacity: 0,
+            scale: 0.5,
+            duration: 0.8,
+            ease: "back.out(1.7)"
+          });
+
+          // Confetti celebration
+          launchConfetti();
+        }
+      });
+    });
+
+    // CONFETTI
+    function launchConfetti() {
+      const duration = 2000;
+      const end = Date.now() + duration;
+
+      (function frame() {
+        confetti({ particleCount: 6, angle: 60, spread: 55, origin: { x: 0 } });
+        confetti({ particleCount: 6, angle: 120, spread: 55, origin: { x: 1 } });
+
+        if (Date.now() < end) requestAnimationFrame(frame);
+      })();
+    }
+
+    // 3D CARD HOVER
+    const card = document.getElementById("successCard");
+
+    card.addEventListener("mousemove", (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left - rect.width / 2;
+      const y = e.clientY - rect.top - rect.height / 2;
+
+      const rotateX = (y / 20) * -1;
+      const rotateY = x / 20;
+
+      card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+    });
+
+    card.addEventListener("mouseleave", () => {
+      card.style.transform = "rotateX(0deg) rotateY(0deg)";
     });
   </script>
 
