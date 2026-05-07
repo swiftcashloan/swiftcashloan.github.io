@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8">
@@ -11,31 +11,13 @@
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 
-  <!-- AOS Animations -->
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-
   <style>
     body { font-family: 'Inter', system-ui, sans-serif; }
 
-    /* Hero background fade-in */
+    /* Hero background */
     .hero-bg {
       background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
                   url('https://source.unsplash.com/random/1600x900/?finance') center/cover;
-      opacity: 0;
-      animation: fadeInHero 1.5s ease-out forwards;
-    }
-    @keyframes fadeInHero {
-      to { opacity: 1; }
-    }
-
-    /* Floating icons */
-    @keyframes float {
-      0% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
-      100% { transform: translateY(0); }
-    }
-    .float {
-      animation: float 3s ease-in-out infinite;
     }
   </style>
 </head>
@@ -60,7 +42,7 @@
   </nav>
 
   <!-- Hero -->
-  <section id="home" class="hero-bg text-white py-32" data-aos="fade-up">
+  <section id="home" class="hero-bg text-white py-32">
     <div class="max-w-7xl mx-auto px-6 text-center">
       <h2 class="text-5xl md:text-6xl font-bold mb-6">Get the money you need,<br>when you need it.</h2>
       <p class="text-xl mb-10 max-w-2xl mx-auto">Fast, secure, and transparent personal & business loans up to $100,000. Approval in minutes.</p>
@@ -78,24 +60,24 @@
       <h3 class="text-4xl font-bold text-center mb-12">Choose Your Loan Type</h3>
       <div class="grid md:grid-cols-3 gap-8">
 
-        <div class="border border-gray-200 rounded-3xl p-8 hover:shadow-xl transition" data-aos="zoom-in" data-aos-delay="100">
-          <i class="fa-solid fa-user text-4xl text-blue-600 mb-6 float"></i>
+        <div class="border border-gray-200 rounded-3xl p-8 hover:shadow-xl transition">
+          <i class="fa-solid fa-user text-4xl text-blue-600 mb-6"></i>
           <h4 class="text-2xl font-semibold mb-3">Personal Loan</h4>
           <p class="text-4xl font-bold mb-2">$500 - $50,000</p>
           <p class="text-gray-600 mb-6">Flexible repayment terms from 6 to 72 months</p>
           <button class="w-full bg-blue-600 text-white py-4 rounded-2xl font-semibold">Apply Now</button>
         </div>
 
-        <div class="border border-gray-200 rounded-3xl p-8 hover:shadow-xl transition" data-aos="zoom-in" data-aos-delay="200">
-          <i class="fa-solid fa-briefcase text-4xl text-emerald-600 mb-6 float"></i>
+        <div class="border border-gray-200 rounded-3xl p-8 hover:shadow-xl transition">
+          <i class="fa-solid fa-briefcase text-4xl text-emerald-600 mb-6"></i>
           <h4 class="text-2xl font-semibold mb-3">Business Loan</h4>
           <p class="text-4xl font-bold mb-2">$10,000 - $100,000</p>
           <p class="text-gray-600 mb-6">For startups and growing businesses</p>
           <button class="w-full bg-emerald-600 text-white py-4 rounded-2xl font-semibold">Apply Now</button>
         </div>
 
-        <div class="border border-gray-200 rounded-3xl p-8 hover:shadow-xl transition" data-aos="zoom-in" data-aos-delay="300">
-          <i class="fa-solid fa-car text-4xl text-purple-600 mb-6 float"></i>
+        <div class="border border-gray-200 rounded-3xl p-8 hover:shadow-xl transition">
+          <i class="fa-solid fa-car text-4xl text-purple-600 mb-6"></i>
           <h4 class="text-2xl font-semibold mb-3">Auto Loan</h4>
           <p class="text-4xl font-bold mb-2">Competitive Rates</p>
           <p class="text-gray-600 mb-6">Finance your new or used vehicle</p>
@@ -112,44 +94,42 @@
       <h3 class="text-4xl font-bold text-center mb-4">Loan Application</h3>
       <p class="text-center text-gray-600 mb-10">Takes less than 5 minutes • Secure & encrypted</p>
 
-      <form id="loanForm" class="bg-white rounded-3xl shadow-xl p-10 space-y-8" data-aos="fade-up">
+      <form id="loanForm" class="bg-white rounded-3xl shadow-xl p-10 space-y-8">
 
         <div class="grid md:grid-cols-2 gap-6">
           <div>
-            <label for="firstName" class="block text-sm font-medium mb-2">First Name</label>
-            <input id="firstName" type="text" class="w-full border border-gray-300 rounded-2xl px-5 py-4 focus:outline-none focus:border-blue-500" required>
+            <label class="block text-sm font-medium mb-2">First Name</label>
+            <input type="text" class="w-full border border-gray-300 rounded-2xl px-5 py-4" required>
           </div>
-
           <div>
-            <label for="lastName" class="block text-sm font-medium mb-2">Last Name</label>
-            <input id="lastName" type="text" class="w-full border border-gray-300 rounded-2xl px-5 py-4 focus:outline-none focus:border-blue-500" required>
+            <label class="block text-sm font-medium mb-2">Last Name</label>
+            <input type="text" class="w-full border border-gray-300 rounded-2xl px-5 py-4" required>
           </div>
         </div>
 
         <div class="grid md:grid-cols-2 gap-6">
           <div>
-            <label for="email" class="block text-sm font-medium mb-2">Email Address</label>
-            <input id="email" type="email" class="w-full border border-gray-300 rounded-2xl px-5 py-4 focus:outline-none focus:border-blue-500" required>
+            <label class="block text-sm font-medium mb-2">Email Address</label>
+            <input type="email" class="w-full border border-gray-300 rounded-2xl px-5 py-4" required>
           </div>
-
           <div>
-            <label for="phone" class="block text-sm font-medium mb-2">Phone Number</label>
-            <input id="phone" type="tel" class="w-full border border-gray-300 rounded-2xl px-5 py-4 focus:outline-none focus:border-blue-500" required>
+            <label class="block text-sm font-medium mb-2">Phone Number</label>
+            <input type="tel" class="w-full border border-gray-300 rounded-2xl px-5 py-4" required>
           </div>
         </div>
 
         <div>
-          <label for="amount" class="block text-sm font-medium mb-2">Loan Amount Requested</label>
+          <label class="block text-sm font-medium mb-2">Loan Amount Requested</label>
           <div class="flex items-center gap-3">
             <span class="text-3xl font-bold text-gray-400">$</span>
-            <input type="number" id="amount" class="w-full border border-gray-300 rounded-2xl px-5 py-4 focus:outline-none focus:border-blue-500 text-2xl" placeholder="5000" required>
+            <input type="number" id="amount" class="w-full border border-gray-300 rounded-2xl px-5 py-4 text-2xl" placeholder="5000" required>
           </div>
         </div>
 
         <div class="grid md:grid-cols-2 gap-6">
           <div>
             <label class="block text-sm font-medium mb-2">Loan Purpose</label>
-            <select class="w-full border border-gray-300 rounded-2xl px-5 py-4 focus:outline-none focus:border-blue-500">
+            <select class="w-full border border-gray-300 rounded-2xl px-5 py-4">
               <option>Debt Consolidation</option>
               <option>Home Improvement</option>
               <option>Business Expansion</option>
@@ -158,10 +138,9 @@
               <option>Other</option>
             </select>
           </div>
-
           <div>
-            <label for="income" class="block text-sm font-medium mb-2">Annual Income ($)</label>
-            <input id="income" type="number" class="w-full border border-gray-300 rounded-2xl px-5 py-4 focus:outline-none focus:border-blue-500" required>
+            <label class="block text-sm font-medium mb-2">Annual Income ($)</label>
+            <input type="number" class="w-full border border-gray-300 rounded-2xl px-5 py-4" required>
           </div>
         </div>
 
@@ -173,11 +152,6 @@
         </div>
 
       </form>
-
-      <p class="text-center text-sm text-gray-500 mt-8">
-        Your information is protected with bank-level encryption.<br>
-        This is a demo website for educational and portfolio purposes only.
-      </p>
     </div>
   </section>
 
@@ -190,11 +164,46 @@
     </div>
   </footer>
 
-  <!-- Scripts -->
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <script>
-    AOS.init({ duration: 1000, once: true });
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
+  <script>
+    gsap.registerPlugin(ScrollTrigger);
+
+    // HERO ANIMATION
+    gsap.from("#home h2", { opacity: 0, y: 50, duration: 1.2, ease: "power3.out" });
+    gsap.from("#home p", { opacity: 0, y: 30, duration: 1, delay: 0.4, ease: "power3.out" });
+    gsap.from("#home button", { opacity: 0, scale: 0.8, duration: 0.8, delay: 0.7, ease: "back.out(1.7)" });
+
+    // LOAN CARDS
+    gsap.utils.toArray("#loans .border").forEach((card, i) => {
+      gsap.from(card, {
+        scrollTrigger: { trigger: card, start: "top 85%" },
+        opacity: 0,
+        y: 40,
+        duration: 0.8,
+        delay: i * 0.15,
+        ease: "power2.out"
+      });
+    });
+
+    // FORM SECTION
+    gsap.from("#apply-section form", {
+      scrollTrigger: { trigger: "#apply-section", start: "top 80%" },
+      opacity: 0,
+      y: 60,
+      duration: 1,
+      ease: "power3.out"
+    });
+
+    // BUTTON MICRO-ANIMATION
+    document.querySelectorAll("button").forEach(btn => {
+      btn.addEventListener("mouseenter", () => gsap.to(btn, { scale: 1.05, duration: 0.2 }));
+      btn.addEventListener("mouseleave", () => gsap.to(btn, { scale: 1, duration: 0.2 }));
+    });
+
+    // FORM SUBMISSION (NO ALERT)
     document.getElementById('loanForm').addEventListener('submit', function(e) {
       e.preventDefault();
 
@@ -204,7 +213,7 @@
         return;
       }
 
-      alert("✅ Application submitted successfully!\n\n(This is a demo. In a real app, data would be securely processed.)");
+      // Silent submit (demo)
       this.reset();
     });
   </script>
